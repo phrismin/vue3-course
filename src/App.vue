@@ -1,23 +1,6 @@
 <template>
   <div class="app">
-    <form>
-      <h4>Создание поста</h4>
-      <input
-          class="input"
-          type="text"
-          name="name"
-          placeholder="Название">
-      <input
-          class="input"
-          type="text"
-          name="description"
-          placeholder="Описание">
-      <button class="btn" @click="createPost">Создать</button>
-    </form>
-    <div class="post" v-for="post in posts">
-      <div><strong>Название:</strong> {{ post.title }}</div>
-      <div><strong>Описание:</strong> {{ post.body }}</div>
-    </div>
+
   </div>
 
 </template>
@@ -38,7 +21,14 @@ export default {
   },
   methods: {
     createPost() {
-
+      const newPost = {
+        id: Date.now(),
+        title: this.title,
+        body: this.body
+      }
+      this.posts.push(newPost)
+      this.title = ''
+      this.body = ''
     }
   }
 }
@@ -51,34 +41,9 @@ export default {
   box-sizing: border-box;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .app {
   padding: 20px;
 }
 
-.post {
-  padding: 15px;
-  border: 2px solid greenyellow;
-  margin-top: 15px;
-}
 
-.input {
-  width: 100%;
-  border: 1px solid darkgreen;
-  padding: 10px 15px;
-  margin-top: 15px;
-}
-
-.btn {
-  margin-top: 10px;
-  padding: 10px;
-  align-self: flex-end;
-  background: none;
-  color: teal;
-  border: 2px solid teal;
-}
 </style>
